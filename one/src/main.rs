@@ -7,15 +7,13 @@ fn read_lines(file_name: &str) -> io::Result<io::Lines<io::BufReader<File>>> {
 }
 
 fn main() {
-    let mut biggest: u32 = 0;
     let mut sum: u32 = 0;
+    let mut elf_totals: Vec<u32> = Vec::new();
 
     if let Ok(lines) = read_lines("data.txt") {
         for line in lines {
-            println!("The current biggest is {}", biggest);
 
             if let Ok(value) = line {
-            println!("Current value: {}", value);
                 if value == "" {
                     sum = 0;
                     continue;
@@ -25,10 +23,21 @@ fn main() {
                     Err(err) => panic!("Error: {}", err)
                 }
             }
-            println!("Current sum: {}", sum);
-            if sum > biggest {
-                biggest = sum;
-            }
+            elf_totals.push(sum);
+
         }
+        elf_totals.sort_by(|a, b| b.cmp(a));
+        println!("Elf totals: {:?}", elf_totals);
+        let ans: u32 = match elf_totals.iter().max() {
+            Some(val) => val.to_owned(),
+            None => 0
+        };
+        println!("Answer 1: {}", ans);
+
+        let mut ans2: u32 = 0;
+        for n in 0..3 {
+           ans2 = ans2 + elf_totals[n];
+        }
+       println!("Answer 2: {}", ans2);
     }
 }
