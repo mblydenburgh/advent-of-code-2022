@@ -64,6 +64,41 @@ fn determine_choice(input: &str) -> Choice {
     }
 }
 
+fn determine_outcome(input: &str) -> Outcome {
+    match input {
+        "X" => Outcome::Lose,
+        "Y" => Outcome::Draw,
+        "Z" => Outcome::Win,
+        &_ => panic!("Could not parse outcome")
+    }
+}
+
+fn determine_player_choice(elf_choice: &Choice, outcome: &Outcome) -> Choice {
+    match elf_choice {
+        Choice::Rock => {
+            match outcome {
+                Outcome::Win => Choice::Paper,
+                Outcome::Draw => Choice::Rock,
+                Outcome::Lose => Choice::Scissor
+            }
+        },
+        Choice::Paper => {
+            match outcome {
+                Outcome::Win => Choice::Scissor,
+                Outcome::Draw => Choice::Paper,
+                Outcome::Lose => Choice::Rock
+            }
+        },
+        Choice::Scissor => {
+            match outcome {
+                Outcome::Win => Choice::Rock,
+                Outcome::Draw => Choice::Scissor,
+                Outcome::Lose => Choice::Paper
+            }
+        }
+    }
+}
+
 pub fn day_2() -> String {
     let mut scores: Vec<u32> = Vec::new();
     if let Ok(lines) = read_lines("day-2-data.txt") {
@@ -79,6 +114,25 @@ pub fn day_2() -> String {
         }
         let total: u32 = scores.iter().sum();
         return format!("Total score: {}", total)
+    }
+    return "No data found".to_string()
+}
+
+pub fn day_2_pt2() -> String {
+    let mut scores: Vec<u32> = Vec::new();
+    if let Ok(lines) = read_lines("day-2-data.txt") {
+        for line in lines {
+            if let Ok(value) = line {
+                let raw_values: Vec<&str> = value.split_whitespace().collect();
+                let elf_choice: Choice = determine_choice(raw_values[0]);
+                let outcome: Outcome = determine_outcome(raw_values[1]);
+                let player_choice: Choice = determine_player_choice(&elf_choice, &outcome);
+                let score: u32 = calc_round_score(&player_choice, outcome);
+                scores.push(score);
+            }
+        }
+        let total: u32 = scores.iter().sum();
+        return format!("Total score of part 2: {}", total)
     }
     return "No data found".to_string()
 }

@@ -2,7 +2,10 @@ mod days;
 
 use self::days::{
     one::day_one,
-    two::day_2
+    two::{
+        day_2,
+        day_2_pt2
+    }
 };
 
 fn main() {
@@ -12,4 +15,6 @@ fn main() {
     println!("*** DAY 2 ***");
     let ans2: String = day_2();
     println!("ANSWER: {}", ans2);
+    let ans2_2: String = day_2_pt2();
+    println!("ANSWER 2: {}", ans2_2);
 }
