@@ -1,2 +1,7 @@
 one/main;
 one/target;
+
+
+# Added by cargo
+
+/target
