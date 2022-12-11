@@ -1,16 +1,16 @@
 use crate::days::utils::read_lines;
 
 fn check_ranges(range_1: &Vec<u8>, range_2: &Vec<u8>) -> bool {
-    let mut encapsulated: bool = false;
-    if range_1[0] >= range_2[0] && range_1[1] <= range_2[1] {
-        // range_1 encapsulated in range_2
-        encapsulated = true
+    return if range_1[0] >= range_2[0] && range_1[1] <= range_2[1] {
+        // 1 is encapsulated in 2
+        true
+    } else if range_2[0] >= range_1[0] && range_2[1] <= range_1[1] {
+        // 2 is encapsulated in 1
+        true
+    } else {
+        // neither
+        false
     }
-    if range_2[0] >= range_1[0] && range_2[1] <= range_1[1] {
-        encapsulated = true
-    }
-
-    return encapsulated
 }
 
 pub fn day_4() -> String {
