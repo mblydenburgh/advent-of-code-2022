@@ -1,6 +1,6 @@
 use crate::days::utils::read_lines;
 
-fn generate_stacks(line: String) -> Vec<Vec<char>> {
+fn generate_stacks(line: &String) -> Vec<Vec<char>> {
     let length = (line.len() + 1) / 4;
     let mut stack = Vec::with_capacity(length);
     for _i in 0..length {
@@ -10,8 +10,8 @@ fn generate_stacks(line: String) -> Vec<Vec<char>> {
 }
 
 pub fn day_5() -> String {
-    if let Ok(mut lines) = read_lines("day-5-data.txt") {
-        let mut stacks: Vec<Vec<char>> = generate_stacks(lines.next().unwrap().unwrap());
+    if let Ok(lines) = read_lines("day-5-data.txt") {
+        let mut stacks: Vec<Vec<char>> = Vec::new();
 
         for line in lines {
             // number of stacks is (length of string + 1) / 4
@@ -19,6 +19,9 @@ pub fn day_5() -> String {
             // check value for alphabetic
             // assign to col vec based on current line index
             if let Ok(value) = line {
+                if stacks.len() == 0 {
+                    stacks = generate_stacks(&value); 
+                }
                 if value.len() > 0 {
                     let line_chars: Vec<char> = value.chars().collect();
                     for (i, val) in line_chars.into_iter().enumerate() {
