@@ -7,7 +7,8 @@ use self::days::{
         day_2_pt2
     },
     three::day_3,
-    four::day_4
+    four::day_4,
+    five::day_5
 };
 
 fn main() {
@@ -25,4 +26,7 @@ fn main() {
     println!("*** Day 4 ***");
     let ans4: String = day_4();
     println!("ANSWER 4: {}", ans4);
+    println!("*** Day 5 ***");
+    let ans5: String = day_5();
+    println!("ANSWER 5: {}", ans5);
 }
