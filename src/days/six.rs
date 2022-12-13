@@ -9,22 +9,6 @@ where
     iter.into_iter().all(move |x| uniq.insert(x))
 }
 
-fn check_signal(chars: &str) -> bool {
-  let mut temp_vec: Vec<char> = Vec::new();
-
-  println!("check_signal for {}", chars);
-  for c in chars.chars() {
-    println!("checking {}", c);
-    if !temp_vec.contains(&c) {
-      temp_vec.push(c);
-      continue;
-    } else {
-      return false
-    }
-  }
-  return true
-}
-
 pub fn day_6() -> String {
   let signal: String = match fs::read_to_string("day-6-data.txt") {
     Ok(val) => val,
@@ -44,5 +28,4 @@ pub fn day_6() -> String {
   }
 
   return String::from("No answer found");
-  // return format!("signal: {:?}", signal)
 }
