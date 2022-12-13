@@ -60,7 +60,8 @@ pub fn day_5() -> String {
                     let step = Step {
                         from: regex_cap.get(2).map(|v| v.as_str()).unwrap().parse::<u32>().unwrap(),
                         to: regex_cap.get(3).map(|v| v.as_str()).unwrap().parse::<u32>().unwrap(),
-                        amount: regex_cap.get(1).map(|v| v.as_str()).unwrap().parse::<u32>().unwrap()                    };
+                        amount: regex_cap.get(1).map(|v| v.as_str()).unwrap().parse::<u32>().unwrap()                    
+                    };
                     steps.push(step);
                 } else {
                     continue;
