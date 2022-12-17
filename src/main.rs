@@ -1,8 +1,6 @@
 mod days;
 
-use crate::days::six::day_6;
-
-use self::days::{
+use crate::days::{
     one::day_one,
     two::{
         day_2,
@@ -10,7 +8,9 @@ use self::days::{
     },
     three::day_3,
     four::day_4,
-    five::day_5
+    five::day_5,
+    six::day_6, 
+    seven::day_7
 };
 
 fn main() {
@@ -34,4 +34,7 @@ fn main() {
     println!("*** Day 6 ***");
     let ans6: String = day_6();
     println!("ANSWER 6: {}", ans6);
+    println!("*** DAY 7 ***");
+    let ans7: String = day_7();
+    println!("ANSWER 7: {}", ans7);
 }

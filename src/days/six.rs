@@ -19,7 +19,6 @@ pub fn day_6() -> String {
   let mut index: usize = 3;
   while index < max_index {
     let marker: &str = &signal[index-3..=index];
-    println!("marker: {}", marker);
     if has_unique_elements(marker.chars().into_iter()) {
       return format!("after {} characters", index + 1)
     }
